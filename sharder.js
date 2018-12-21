@@ -1,4 +1,3 @@
-
       "use strict";
 
       const shards = {};
@@ -26,13 +25,13 @@
         const fragment = hash.substr(0, 3);
 
         // convert our fragment to an integer which we can transform to suit our needs
-        const dividend = parseInt(fragment, 16);
+        const integer = parseInt(fragment, 16);
 
-        // scale our integer down to 26^2
-        const quotient = (dividend / 6) | 0;
+        // constrain our integer to 26^2
+        const remainder = integer % 676;
 
         // convert to base 26 and pad if necessary
-        const shard = ("0" + quotient.toString(26)).substr(-2);
+        const shard = ("0" + remainder.toString(26)).substr(-2);
 
         // shift characters to legal set
         return shard
